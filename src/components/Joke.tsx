@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import Loader from 'react-loader-spinner';
+import { TiRefresh } from 'react-icons/ti';
 
-import { Container } from '../styles/Joke';
+import { Container, RefreshButton } from '../styles/Joke';
 import api from '../services/api';
 
 const Joke: React.FC = () => {
@@ -10,6 +11,8 @@ const Joke: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const handleLoadJoke = async (): Promise<void> => {
+    setLoading(true);
+
     try {
       const response = await api.get('/', {
         params: {
@@ -41,7 +44,12 @@ const Joke: React.FC = () => {
           width={40}
         />
       ) : (
-        <p>{randomJoke}</p>
+        <div>
+          <p>{randomJoke}</p>
+          <RefreshButton type="button" onClick={handleLoadJoke}>
+            <TiRefresh size={40} />
+          </RefreshButton>
+        </div>
       )}
     </Container>
   );

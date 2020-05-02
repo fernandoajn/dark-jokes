@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Container = styled.div`
   color: mediumseagreen;
@@ -12,4 +13,17 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const RefreshButton = styled.button`
+  background-color: transparent;
+  color: ${shade(0.4, 'mediumseagreen')};
+  outline: 0;
+  border: 0;
+  padding: 10px;
+  transition: ease-in-out 0.3s;
+
+  &:hover {
+    transform: rotate(180deg);
+  }
 `;
