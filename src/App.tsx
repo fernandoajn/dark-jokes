@@ -5,6 +5,7 @@ import GlobalStyle from './styles/global';
 import { AppContainer } from './styles/App';
 
 import Joke from './components/Joke';
+import Credits from './components/Credits';
 
 const App: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const App: React.FC = () => {
       <GlobalStyle />
       <AppContainer>
         <Joke />
+        <Credits />
       </AppContainer>
     </>
   );

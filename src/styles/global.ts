@@ -10,11 +10,11 @@ export default createGlobalStyle`
 
   body {
     background: #111;
+    font-family: 'Bitter', serif;
     -webkit-font-smoothing: antialiased;
   }
 
   body, input, button {
-    font: 30px 'Bitter', serif;
     color: #fff;
   }
 

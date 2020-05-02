@@ -36,7 +36,7 @@ const Joke: React.FC = () => {
       {loading ? (
         <Loader
           type="ThreeDots"
-          color="lightslategray"
+          color="mediumseagreen"
           height={40}
           width={40}
         />
