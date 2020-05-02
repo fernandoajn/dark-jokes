@@ -8,6 +8,9 @@ export const Footer = styled.footer`
   align-items: center;
   justify-content: center;
 
+  position: absolute;
+  bottom: 0;
+
   & p {
     color: #444;
 
