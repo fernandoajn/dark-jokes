@@ -30,12 +30,18 @@ const Joke: React.FC = () => {
     setLoading(false);
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent): void => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      handleLoadJoke();
+    }
+  };
+
   useEffect(() => {
     handleLoadJoke();
   }, []);
 
   return (
-    <Container>
+    <Container tabIndex={0} onKeyPress={handleKeyPress}>
       {loading ? (
         <Loader
           type="ThreeDots"
