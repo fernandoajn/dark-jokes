@@ -3,11 +3,13 @@ import React, { useState, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
 import { TiRefresh } from 'react-icons/ti';
 
-import { Container, RefreshButton } from '../styles/Joke';
+import { Container, RefreshButton, JokeText } from '../styles/Joke';
 import api from '../services/api';
 
 const Joke: React.FC = () => {
-  const [randomJoke, setRandomJoke] = useState<string>();
+  const [randomJoke, setRandomJoke] = useState<String>();
+  const [punchline, setPunchline] = useState<String>();
+  const [visiblePunchline, setVisiblePunchline] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
   const handleLoadJoke = async (): Promise<void> => {
@@ -19,15 +21,26 @@ const Joke: React.FC = () => {
           type: 'single',
         },
       });
+      
+      const { setup, punchline } = response.data;
 
-      const { joke } = response.data;
+      console.log(
+        `${setup} -> ${punchline}`
+      )
 
-      setRandomJoke(joke);
+      setRandomJoke(setup);
+      setPunchline(punchline);
+      setVisiblePunchline(false);
     } catch (error) {
       setRandomJoke(`Error: ${error}`);
     }
 
     setLoading(false);
+  };
+
+  const showPunchline = () => {
+    console.log(punchline);
+    setVisiblePunchline(true);
   };
 
   const handleKeyPress = (event: React.KeyboardEvent): void => {
@@ -51,10 +64,13 @@ const Joke: React.FC = () => {
         />
       ) : (
         <div>
-          <p>{randomJoke}</p>
+          <JokeText onClick={showPunchline}>{randomJoke}</JokeText>
+          {visiblePunchline && <p>{punchline}</p>}
+          {visiblePunchline &&
           <RefreshButton type="button" onClick={handleLoadJoke}>
             <TiRefresh size={40} />
           </RefreshButton>
+          }
         </div>
       )}
     </Container>

@@ -27,3 +27,8 @@ export const RefreshButton = styled.button`
     transform: rotate(180deg);
   }
 `;
+
+export const JokeText = styled.a`
+  display: block;
+  cursor: pointer;
+`;
